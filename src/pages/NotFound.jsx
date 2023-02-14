@@ -1,11 +1,13 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const NotFound = () => {
+  const naviagte = useNavigate();
+
   return (
     <>
       <div className='flex justify-center mt-[15vh]'>
-        <button className='font-bold text-4xl'>
-          <Link to={'/'}>404 NotFound 🦹</Link>
+        <button onClick={() => naviagte(-1)} className='font-bold text-4xl'>
+          404 NotFound 🦹
         </button>
       </div>
     </>
