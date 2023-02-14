@@ -30,8 +30,30 @@ const Authentication = (props) => {
       : setValidationStatus(false);
   }, [emailValidation, PwdValidation]);
 
-  const testHandleSubmit = () => {
-    navigate('/');
+  const testHandleSignUpSubmit = () => {
+    navigate('/signin');
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const SIGNUP_URL = `https://pre-onboarding-selection-task.shop/auth/${authType}`;
+
+    const userInfo = {
+      email: emailValue,
+      password: pwdValue,
+    };
+
+    fetch(SIGNUP_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userInfo),
+    })
+      .then((res) => res.json())
+      .then(navigate(authType === 'signUp' ? '/signIn' : '/todo'))
+      .catch((err) => console.error(err));
   };
 
   return (
@@ -64,7 +86,9 @@ const Authentication = (props) => {
         </div>
         <button
           disabled={!validationStatus}
-          onClick={testHandleSubmit}
+          onClick={
+            authType === 'signUp' ? testHandleSignUpSubmit : handleSubmit
+          }
           className='ml-auto border-[1.5px] border-slate-500 rounded-sm w-[4rem] h-[2.5rem] drop-shadow-md'>
           <span className={!validationStatus ? 'opacity-50' : ''}>Done</span>
         </button>
