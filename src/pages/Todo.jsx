@@ -1,4 +1,15 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 const Todo = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const ACCESS_TOKEN = localStorage.getItem('access_token');
+
+    if (!ACCESS_TOKEN) navigate('/signin');
+  }, [navigate]);
+
   return (
     <>
       <div className='w-full justify-center flex gap-12 mt-[8vh] pb-7'>
