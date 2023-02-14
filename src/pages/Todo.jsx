@@ -49,6 +49,13 @@ const Todo = () => {
     setTodos(updatedTodos);
   };
 
+  const handleModifyStatus = (index) => {
+    const updatedTodos = [...todos];
+    updatedTodos[index].modifyStatus = !updatedTodos[index].modifyStatus;
+
+    setTodos(updatedTodos);
+  };
+
   return (
     <>
       <div className='w-full justify-center flex gap-12 mt-[8vh] pb-7'>
@@ -110,6 +117,7 @@ const Todo = () => {
               ) : (
                 <>
                   <button
+                    onClick={() => handleModifyStatus(index)}
                     className='mr-1 w-[3rem] rounded-sm border-[1.5px] border-slate-500 p-1.5 drop-shadow-md'
                     data-testid='modify-button'>
                     수정
