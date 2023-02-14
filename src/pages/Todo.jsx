@@ -14,7 +14,7 @@ const Todo = () => {
   const [todos, setTodos] = useState([
     {
       todo: '카구리 사기',
-      completed: false,
+      completed: true,
     },
     {
       todo: '카구리 먹기',
@@ -33,6 +33,13 @@ const Todo = () => {
       setTodos([...todos, { todo: todoValue, completed: false }]);
       setTodoValue('');
     }
+  };
+
+  const handleTodoCheck = (index) => {
+    const updatedTodos = [...todos];
+    updatedTodos[index].completed = !updatedTodos[index].completed;
+
+    setTodos(updatedTodos);
   };
 
   return (
@@ -61,8 +68,12 @@ const Todo = () => {
         <ul>
           {todos.map((todo, index) => (
             <li key={index}>
-              <label className='mr-4'>
-                <input className='mr-2' type='checkbox' />
+              <label onClick={() => handleTodoCheck(index)} className='mr-4'>
+                <input
+                  className='mr-2'
+                  defaultChecked={todo.completed}
+                  type='checkbox'
+                />
                 <span>{todo.todo}</span>
               </label>
             </li>
