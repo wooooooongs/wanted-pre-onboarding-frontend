@@ -57,7 +57,7 @@ const Todo = () => {
         </button>
       </div>
 
-      <div className='w-[15rem] mx-auto mt-[6rem]'>
+      <div className='w-[30rem] mx-auto mt-[6rem]'>
         <div className='flex mb-5'>
           <input
             value={todoValue}
@@ -74,7 +74,7 @@ const Todo = () => {
           </button>
         </div>
 
-        <ul>
+        <ul className='w-full'>
           {todos.map((todo, index) => (
             <li key={index}>
               <label onClick={() => handleTodoCheck(index)} className='mr-4'>
