@@ -15,10 +15,12 @@ const Todo = () => {
     {
       todo: '카구리 사기',
       completed: true,
+      modifyStatus: true,
     },
     {
       todo: '카구리 먹기',
       completed: false,
+      modifyStatus: false,
     },
   ]);
 
@@ -83,18 +85,42 @@ const Todo = () => {
                   defaultChecked={todo.completed}
                   type='checkbox'
                 />
-                <span>{todo.todo}</span>
+                {todo.modifyStatus ? (
+                  <input
+                    defaultValue={todo.todo}
+                    onChange={handleInputChange}
+                  />
+                ) : (
+                  <span>{todo.todo}</span>
+                )}
               </label>
-              <button
-                className='mr-1 w-[3rem] rounded-sm border-[1.5px] border-slate-500 p-1.5 drop-shadow-md'
-                data-testid='modify-button'>
-                수정
-              </button>
-              <button
-                className='w-[3rem] rounded-sm border-[1.5px] border-slate-500 p-1.5 drop-shadow-md'
-                data-testid='delete-button'>
-                삭제
-              </button>
+              {todo.modifyStatus ? (
+                <>
+                  <button
+                    className='mr-1 w-[3rem] rounded-sm border-[1.5px] border-slate-500 p-1.5 drop-shadow-md'
+                    data-testid='submit-button'>
+                    제출
+                  </button>
+                  <button
+                    className='mr-1 w-[3rem] rounded-sm border-[1.5px] border-slate-500 p-1.5 drop-shadow-md'
+                    data-testid='cancel-button'>
+                    취소
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    className='mr-1 w-[3rem] rounded-sm border-[1.5px] border-slate-500 p-1.5 drop-shadow-md'
+                    data-testid='modify-button'>
+                    수정
+                  </button>
+                  <button
+                    className='w-[3rem] rounded-sm border-[1.5px] border-slate-500 p-1.5 drop-shadow-md'
+                    data-testid='delete-button'>
+                    삭제
+                  </button>
+                </>
+              )}
             </li>
           ))}
         </ul>
