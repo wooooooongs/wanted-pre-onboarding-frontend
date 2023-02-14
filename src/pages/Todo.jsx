@@ -22,6 +22,11 @@ const Todo = () => {
     },
   ]);
 
+  const handleSignOut = () => {
+    localStorage.removeItem('access_token');
+    navigate('/signin');
+  };
+
   const handleInputChange = (e) => {
     setTodoValue(e.target.value);
   };
@@ -45,7 +50,11 @@ const Todo = () => {
   return (
     <>
       <div className='w-full justify-center flex gap-12 mt-[8vh] pb-7'>
-        <button className='h-[55px] text-5xl font-semibold'>Sign Out</button>
+        <button
+          className='h-[55px] text-5xl font-semibold'
+          onClick={handleSignOut}>
+          Sign Out
+        </button>
       </div>
 
       <div className='w-[15rem] mx-auto mt-[6rem]'>
@@ -76,6 +85,16 @@ const Todo = () => {
                 />
                 <span>{todo.todo}</span>
               </label>
+              <button
+                className='mr-1 w-[3rem] rounded-sm border-[1.5px] border-slate-500 p-1.5 drop-shadow-md'
+                data-testid='modify-button'>
+                수정
+              </button>
+              <button
+                className='w-[3rem] rounded-sm border-[1.5px] border-slate-500 p-1.5 drop-shadow-md'
+                data-testid='delete-button'>
+                삭제
+              </button>
             </li>
           ))}
         </ul>
