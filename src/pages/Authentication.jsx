@@ -1,10 +1,18 @@
 import React from 'react';
 
-const SignUp = () => {
+const Authentication = (props) => {
+  const { authType } = props;
+  const titleType = {
+    signUp: 'Sign Up',
+    signIn: 'Sign In',
+  };
+
   return (
     <>
       <div className='flex flex-col w-[400px] h-[450px] border-[1.5px] rounded-sm border-slate-700 mx-auto my-[5rem] px-11 py-7'>
-        <p className='font-semibold mx-auto text-5xl mb-[4rem]'>Sign Up</p>
+        <p className='font-semibold mx-auto text-5xl mb-[4rem]'>
+          {titleType[authType]}
+        </p>
         <div className='mb-8'>
           <div className='mb-1'>
             <span className='font-semibold mr-2'>Email</span>
@@ -33,4 +41,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Authentication;

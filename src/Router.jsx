@@ -1,10 +1,23 @@
 import { createBrowserRouter } from 'react-router-dom';
-import SignUp from './pages/SignUp';
+import Root from './pages/Root';
+import NotFound from './pages/NotFound';
+import Authentication from './pages/Authenticationcopy';
 
 const router = createBrowserRouter([
   {
-    path: '/signup',
-    element: <SignUp />,
+    path: '/',
+    element: <Root />,
+    errorElement: <NotFound />,
+    children: [
+      {
+        path: '/signup',
+        element: <Authentication authType='signUp' />,
+      },
+      {
+        path: '/signin',
+        element: <Authentication authType='signIn' />,
+      },
+    ],
   },
 ]);
 
